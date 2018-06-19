@@ -3,13 +3,12 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee  http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0" metadata-complete="true">
-<display-name>Archetype Created Web Application</display-name>
     <servlet>
         <servlet-name>demo</servlet-name>
         <servlet-class>com.wilson404.demo.DemoServlet</servlet-class>
         <init-param>
             <param-name>BasePackage</param-name>
-            <param-value>com.wilson404.demo.controller</param-value>
+            <param-value>com.wilson404.demo.test.controller</param-value>
         </init-param>
     </servlet>
     <servlet-mapping>

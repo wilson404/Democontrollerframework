@@ -1,4 +1,4 @@
-package com.wilson404.demo.dto;
+package com.wilson404.demo.test.dto;
 
 public class DemoDto {
     private String name;

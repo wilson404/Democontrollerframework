@@ -1,10 +1,10 @@
-package com.wilson404.demo.controller;
+package com.wilson404.demo.test.controller;
 
 import com.wilson404.demo.annotation.Controller;
 import com.wilson404.demo.annotation.RequestBody;
 import com.wilson404.demo.annotation.RequestMapper;
 import com.wilson404.demo.base.HttpMethod;
-import com.wilson404.demo.dto.DemoDto;
+import com.wilson404.demo.test.dto.DemoDto;
 
 @Controller
 public class TestController {
