@@ -12,11 +12,13 @@ import java.util.Set;
 
 public class DemoCache {
     private static final Map<RequestKey, RequestKey> requestKeyMap;
+    private static final Map objMap;
 
     static {
         requestKeyMap = Maps.newHashMap();
+        objMap = Maps.newHashMap();
     }
-    public static void makeCache(String backPackage){
+    public static void makeURLMapCache(String backPackage){
         Reflections reflections = new Reflections(backPackage);
         Set<Class<?>> classes = reflections.getTypesAnnotatedWith(Controller.class);
         for (Class clazz : classes) {
