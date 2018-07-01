@@ -3,12 +3,15 @@ package com.wilson404.demo;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.wilson404.demo.annotation.RequestBody;
+import com.wilson404.demo.annotation.ResponseBody;
 import com.wilson404.demo.base.Const;
 import com.wilson404.demo.base.DemoCache;
 import com.wilson404.demo.base.HttpMethod;
 import com.wilson404.demo.dto.RequestKey;
 import com.wilson404.demo.exception.BusinessException;
 import com.wilson404.demo.exception.SystemException;
+import com.wilson404.demo.respHander.JsonHander;
+import com.wilson404.demo.respHander.TextHander;
 import org.apache.commons.io.IOUtils;
 
 import javax.servlet.ServletInputStream;
@@ -90,10 +93,13 @@ public class DemoServlet extends HttpServlet {
             resp.sendError(HttpServletResponse.SC_SERVICE_UNAVAILABLE);
             return;
         }
-        PrintWriter writer = resp.getWriter();
-        writer.print(s.toString());
-        resp.setHeader("Content-Type", "text/plain");
-        writer.flush();
-        writer.close();
+        ResponseHander responseHander;
+        ResponseBody annotation = method.getAnnotation(ResponseBody.class);
+        if (annotation != null){
+            responseHander = new JsonHander();
+        }else {
+            responseHander = new TextHander();
+        }
+        responseHander.doresp(resp,s);
     }
 }
