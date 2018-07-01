@@ -8,7 +8,7 @@ import java.io.PrintWriter;
 
 public class TextHander implements ResponseHander {
     @Override
-    public void doresp(HttpServletResponse resp, Object o) {
+    public void doResp(HttpServletResponse resp, Object o) {
         resp.setHeader("Content-Type", "application/json");
         String out = o.toString();
         try (PrintWriter writer = resp.getWriter()){

@@ -1,13 +1,18 @@
 package com.wilson404.demo.test.controller;
 
-import com.wilson404.demo.annotation.Controller;
-import com.wilson404.demo.annotation.RequestBody;
-import com.wilson404.demo.annotation.RequestMapper;
-import com.wilson404.demo.annotation.ResponseBody;
+import com.google.common.io.Files;
+import com.wilson404.demo.annotation.*;
 import com.wilson404.demo.base.HttpMethod;
 import com.wilson404.demo.test.dto.DemoDto;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.event.ComponentEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @Controller
 public class TestController {
@@ -34,5 +39,21 @@ public class TestController {
         DemoDto demoDto = new DemoDto();
         demoDto.setName("t4");
         return demoDto;
+    }
+
+    @RequestMapper(uri = "/t5", httpMethod = HttpMethod.GET)
+    @FileResponse
+    public File t5() {
+        BufferedImage bufferedImage = new BufferedImage(100,100,BufferedImage.TYPE_INT_ARGB);
+        Graphics2D graphics2D = bufferedImage.createGraphics();
+        graphics2D.drawString("test",50,50);
+        File file = null;
+        try {
+            file = File.createTempFile("temp",".jpg");
+            ImageIO.write(bufferedImage,"JPG",file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return file;
     }
 }

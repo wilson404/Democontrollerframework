@@ -10,7 +10,7 @@ import java.io.PrintWriter;
 
 public class JsonHander implements ResponseHander {
 
-    public void doresp(HttpServletResponse resp,Object o){
+    public void doResp(HttpServletResponse resp,Object o){
         resp.setHeader("Content-Type", "application/json");
         Gson gson =new GsonBuilder().setLenient().create();
        String json = gson.toJson(o);
