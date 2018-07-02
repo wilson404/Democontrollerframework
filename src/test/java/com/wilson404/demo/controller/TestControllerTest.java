@@ -1,31 +1,34 @@
 package com.wilson404.demo.controller;
 
-import com.wilson404.demo.test.TestService4;
 import com.wilson404.demo.test.controller.TestController;
 import org.junit.Before;
+import org.junit.Test;
 
-import javax.annotation.Resource;
+import javax.inject.Inject;
 
 public class TestControllerTest {
 
-    @Resource
+    @Inject
     private TestController controller;
 
     @Before
-    public void before(){
+    public void before() {
         controller = new TestController();
     }
 
-    @org.junit.Test
+    @Test
     public void t1() {
         System.out.println(controller.t1());
     }
 
-    @org.junit.Test
+    @Test
     public void t2() {
+
     }
 
-    @org.junit.Test
-    public void t3() {
+    @Test
+    public void t4() {
+        System.out.println(controller.t4());
     }
+
 }

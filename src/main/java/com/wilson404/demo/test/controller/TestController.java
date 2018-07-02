@@ -5,6 +5,7 @@ import com.wilson404.demo.annotation.*;
 import com.wilson404.demo.base.HttpMethod;
 import com.wilson404.demo.test.dto.DemoDto;
 
+import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.event.ComponentEvent;
@@ -15,6 +16,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 @Controller
+@Resource
 public class TestController {
 
     @RequestMapper(uri = "/t1", httpMethod = HttpMethod.GET)
