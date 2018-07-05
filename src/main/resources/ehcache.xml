@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<config
+        xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+        xmlns='http://www.ehcache.org/v3'
+        xsi:schemaLocation="http://www.ehcache.org/v3 http://www.ehcache.org/schema/ehcache-core.xsd">
+
+    <cache alias="urlCache">
+        <key-type>com.wilson404.demo.dto.RequestKey</key-type>
+        <value-type>com.wilson404.demo.dto.RequestKey</value-type>
+        <heap>2000</heap>
+    </cache>
+
+
+</config>

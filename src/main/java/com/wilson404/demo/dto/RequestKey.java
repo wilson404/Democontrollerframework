@@ -2,10 +2,11 @@ package com.wilson404.demo.dto;
 
 import com.wilson404.demo.base.HttpMethod;
 
+import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.util.Objects;
 
-public class RequestKey {
+public class RequestKey implements Serializable{
     private String URI;
     private HttpMethod httpMethod;
     private Class clazz;
@@ -66,7 +67,6 @@ public class RequestKey {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(URI, httpMethod);
     }
 }
