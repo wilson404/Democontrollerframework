@@ -3,25 +3,19 @@ package com.wilson404.demo.dto;
 import com.wilson404.demo.base.HttpMethod;
 
 import java.io.Serializable;
-import java.lang.reflect.Method;
 import java.util.Objects;
 
 public class RequestKey implements Serializable{
+
+    private static final long serialVersionUID = 3029709210941707546L;
+
     private String URI;
+
     private HttpMethod httpMethod;
-    private Class clazz;
-    private Method method;
 
     public RequestKey(String URI, HttpMethod httpMethod) {
         this.URI = URI;
         this.httpMethod = httpMethod;
-    }
-
-    public RequestKey(String URI, HttpMethod httpMethod, Class clazz, Method method) {
-        this.URI = URI;
-        this.httpMethod = httpMethod;
-        this.clazz = clazz;
-        this.method = method;
     }
 
     public String getURI() {
@@ -40,21 +34,6 @@ public class RequestKey implements Serializable{
         this.httpMethod = httpMethod;
     }
 
-    public Class getClazz() {
-        return clazz;
-    }
-
-    public void setClazz(Class clazz) {
-        this.clazz = clazz;
-    }
-
-    public Method getMethod() {
-        return method;
-    }
-
-    public void setMethod(Method method) {
-        this.method = method;
-    }
 
     @Override
     public boolean equals(Object o) {

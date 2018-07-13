@@ -3,6 +3,7 @@ package com.wilson404.demo.base;
 import com.google.common.io.Resources;
 import com.wilson404.demo.annotation.Controller;
 import com.wilson404.demo.annotation.RequestMapper;
+import com.wilson404.demo.dto.RequestInfo;
 import com.wilson404.demo.dto.RequestKey;
 import org.ehcache.Cache;
 import org.ehcache.CacheManager;
@@ -15,14 +16,13 @@ import java.net.URL;
 import java.util.Set;
 
 public class DemoCache {
-    private static final Cache<RequestKey, RequestKey> urlCache;
+    private static final Cache<RequestKey, RequestInfo> urlCache;
 
     static {
         URL ehcache = Resources.getResource("/ehcache.xml");
         CacheManager cacheManager = CacheManagerBuilder.newCacheManager(new XmlConfiguration(ehcache));
         cacheManager.init();
-        urlCache = cacheManager.getCache("urlCache", RequestKey.class, RequestKey.class);
-
+        urlCache = cacheManager.getCache("urlCache", RequestKey.class, RequestInfo.class);
     }
 
     public static void makeURLMapCache(String backPackage) {
@@ -35,12 +35,13 @@ public class DemoCache {
                 if (annotation == null) continue;
                 String uri = annotation.uri();
                 HttpMethod httpMethod = annotation.httpMethod();
-                urlCache.put(new RequestKey(uri, httpMethod), new RequestKey(uri, httpMethod, clazz, method));
+                RequestKey requestKey = new RequestKey(uri, httpMethod);
+                urlCache.put(requestKey, new RequestInfo(requestKey,clazz, method));
             }
         }
     }
 
-    public static RequestKey getRequestKey(RequestKey requestKey) {
+    public static RequestInfo getRequestKey(RequestKey requestKey) {
         return urlCache.get(requestKey);
     }
 }

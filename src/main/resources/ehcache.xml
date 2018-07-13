@@ -6,7 +6,7 @@
 
     <cache alias="urlCache">
         <key-type>com.wilson404.demo.dto.RequestKey</key-type>
-        <value-type>com.wilson404.demo.dto.RequestKey</value-type>
+        <value-type>com.wilson404.demo.dto.RequestInfo</value-type>
         <heap>2000</heap>
     </cache>
 

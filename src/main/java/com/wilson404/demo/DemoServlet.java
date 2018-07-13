@@ -8,12 +8,13 @@ import com.wilson404.demo.annotation.ResponseBody;
 import com.wilson404.demo.base.Const;
 import com.wilson404.demo.base.DemoCache;
 import com.wilson404.demo.base.HttpMethod;
+import com.wilson404.demo.dto.RequestInfo;
 import com.wilson404.demo.dto.RequestKey;
 import com.wilson404.demo.exception.BusinessException;
 import com.wilson404.demo.exception.SystemException;
-import com.wilson404.demo.respHander.FileHander;
-import com.wilson404.demo.respHander.JsonHander;
-import com.wilson404.demo.respHander.TextHander;
+import com.wilson404.demo.respHander.FileHandler;
+import com.wilson404.demo.respHander.JsonHandler;
+import com.wilson404.demo.respHander.TextHandler;
 import org.apache.commons.io.IOUtils;
 
 import javax.servlet.ServletInputStream;
@@ -21,13 +22,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class DemoServlet extends HttpServlet {
 
+    private static final long serialVersionUID = 914976221467963220L;
     private Gson gson;
 
     @Override
@@ -40,12 +41,12 @@ public class DemoServlet extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         HttpMethod httpMethod = HttpMethod.valueOf(req.getMethod());
         String uri = req.getRequestURI();
-        RequestKey requestKey = DemoCache.getRequestKey(new RequestKey(uri, httpMethod));
-        if (requestKey == null) {//没有配置这个url
+        RequestInfo requestInfo = DemoCache.getRequestKey(new RequestKey(uri, httpMethod));
+        if (requestInfo == null) {//没有配置这个url
             resp.sendError(HttpServletResponse.SC_NOT_FOUND);
             return;
         }
-        Class clazz = requestKey.getClazz();
+        Class clazz = requestInfo.getClazz();
         Object object;
         try {
             object = clazz.newInstance();//实例化method所在的class的对象
@@ -54,7 +55,7 @@ public class DemoServlet extends HttpServlet {
             resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             return;
         }
-        Method method = requestKey.getMethod();
+        Method method = requestInfo.getMethod();
         Object[] parObj = new Object[method.getParameterCount()];
         Annotation[][] parameterAnnotations = method.getParameterAnnotations();
         for (int i = 0; i < parameterAnnotations.length; i++) {
@@ -95,14 +96,14 @@ public class DemoServlet extends HttpServlet {
             resp.sendError(HttpServletResponse.SC_SERVICE_UNAVAILABLE);
             return;
         }
-        ResponseHander responseHander;
+        ResponseHandler responseHandler;
         if (method.getAnnotation(ResponseBody.class) != null) {
-            responseHander = new JsonHander();
+            responseHandler = new JsonHandler();
         } else if (method.getAnnotation(FileResponse.class) != null) {
-            responseHander = new FileHander();
+            responseHandler = new FileHandler();
         } else {
-            responseHander = new TextHander();
+            responseHandler = new TextHandler();
         }
-        responseHander.doResp(resp, s);
+        responseHandler.doResp(resp, s);
     }
 }

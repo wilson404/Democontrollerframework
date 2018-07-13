@@ -1,18 +1,16 @@
 package com.wilson404.demo.respHander;
 
-import com.wilson404.demo.ResponseHander;
+import com.wilson404.demo.ResponseHandler;
 import org.apache.commons.io.IOUtils;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
-public class FileHander implements ResponseHander {
+public class FileHandler implements ResponseHandler {
     @Override
     public void doResp(HttpServletResponse resp, Object o) {
         if (o instanceof File) {

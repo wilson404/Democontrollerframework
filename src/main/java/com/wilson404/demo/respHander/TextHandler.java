@@ -1,12 +1,12 @@
 package com.wilson404.demo.respHander;
 
-import com.wilson404.demo.ResponseHander;
+import com.wilson404.demo.ResponseHandler;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class TextHander implements ResponseHander {
+public class TextHandler implements ResponseHandler {
     @Override
     public void doResp(HttpServletResponse resp, Object o) {
         resp.setHeader("Content-Type", "application/json");

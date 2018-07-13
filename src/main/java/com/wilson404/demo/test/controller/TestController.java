@@ -46,11 +46,11 @@ public class TestController {
     @RequestMapper(uri = "/t5", httpMethod = HttpMethod.GET)
     @FileResponse
     public File t5() {
-        BufferedImage bufferedImage = new BufferedImage(100,100,BufferedImage.TYPE_INT_ARGB);
-        Graphics2D graphics2D = bufferedImage.createGraphics();
-        graphics2D.drawString("test",50,50);
         File file = null;
         try {
+            BufferedImage bufferedImage = new BufferedImage(100,100,BufferedImage.TYPE_INT_ARGB);
+            Graphics2D graphics2D = bufferedImage.createGraphics();
+            graphics2D.drawString("test",50,50);
             file = File.createTempFile("temp",".jpg");
             ImageIO.write(bufferedImage,"JPG",file);
         } catch (IOException e) {
