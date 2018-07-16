@@ -33,7 +33,6 @@ public class DemoServlet extends HttpServlet {
 
     @Override
     public void init() {
-        DemoCache.makeURLMapCache(getInitParameter(Const.BACE_PACKAGE));
         gson = new GsonBuilder().setLenient().create();
     }
 
@@ -81,7 +80,7 @@ public class DemoServlet extends HttpServlet {
         try {
 
             s = method.invoke(object, parObj);//利用反射执行这个方法
-        }catch(BusinessException e){
+        } catch (BusinessException e) {
             resp.sendError(HttpServletResponse.SC_FORBIDDEN);
             return;
         } catch (SystemException e) {

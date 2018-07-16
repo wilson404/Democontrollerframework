@@ -1,6 +1,5 @@
 package com.wilson404.demo.test.controller;
 
-import com.google.common.io.Files;
 import com.wilson404.demo.annotation.*;
 import com.wilson404.demo.base.HttpMethod;
 import com.wilson404.demo.test.dto.DemoDto;
@@ -8,12 +7,9 @@ import com.wilson404.demo.test.dto.DemoDto;
 import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.event.ComponentEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 @Controller
 @Resource
