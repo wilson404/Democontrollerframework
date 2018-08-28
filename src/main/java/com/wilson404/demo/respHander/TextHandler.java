@@ -9,7 +9,7 @@ import java.io.PrintWriter;
 public class TextHandler implements ResponseHandler {
     @Override
     public void doResp(HttpServletResponse resp, Object o) {
-        resp.setHeader("Content-Type", "application/json");
+        resp.setHeader("Content-Type", "text/plain");
         String out = o.toString();
         try (PrintWriter writer = resp.getWriter()){
             writer.print(out);
