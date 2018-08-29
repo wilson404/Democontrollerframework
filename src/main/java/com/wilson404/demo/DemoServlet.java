@@ -3,6 +3,7 @@ package com.wilson404.demo;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.wilson404.demo.annotation.FileResponse;
+import com.wilson404.demo.annotation.JpgResponse;
 import com.wilson404.demo.annotation.RequestBody;
 import com.wilson404.demo.annotation.ResponseBody;
 import com.wilson404.demo.base.Const;
@@ -13,6 +14,7 @@ import com.wilson404.demo.dto.RequestKey;
 import com.wilson404.demo.exception.BusinessException;
 import com.wilson404.demo.exception.SystemException;
 import com.wilson404.demo.respHander.FileHandler;
+import com.wilson404.demo.respHander.JpgHander;
 import com.wilson404.demo.respHander.JsonHandler;
 import com.wilson404.demo.respHander.TextHandler;
 import org.apache.commons.io.IOUtils;
@@ -100,6 +102,8 @@ public class DemoServlet extends HttpServlet {
             responseHandler = new JsonHandler();
         } else if (method.getAnnotation(FileResponse.class) != null) {
             responseHandler = new FileHandler();
+        } else if (method.getAnnotation(JpgResponse.class) != null) {
+            responseHandler = new JpgHander();
         } else {
             responseHandler = new TextHandler();
         }

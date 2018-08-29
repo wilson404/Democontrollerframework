@@ -9,9 +9,9 @@ import java.io.PrintWriter;
 public class TextHandler implements ResponseHandler {
     @Override
     public void doResp(HttpServletResponse resp, Object o) {
-        resp.setHeader("Content-Type", "text/plain");
+        resp.setHeader("Content-Type", "text/plain");
         String out = o.toString();
-        try (PrintWriter writer = resp.getWriter()){
+        try (PrintWriter writer = resp.getWriter()) {
             writer.print(out);
             writer.flush();
         } catch (IOException e) {
