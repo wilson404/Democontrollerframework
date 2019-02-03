@@ -5,11 +5,8 @@ import com.wilson404.demo.base.HttpMethod;
 import com.wilson404.demo.test.dto.DemoDto;
 
 import javax.annotation.Resource;
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 @Controller
 @Resource
